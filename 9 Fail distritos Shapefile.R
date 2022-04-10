@@ -1,0 +1,28 @@
+library(sf)
+library(raster)
+library(dplyr)
+library(spData)
+library(tmap)
+library(leaflet)
+library(ggplot2)
+library(tmap)
+library(sf)
+library(extrafont)
+
+myshp = st_read("PUNO/DISTRITOS_PUNO.shp")
+
+tm_shape(myshp) + tm_polygons()
+
+A = tm_shape(myshp) +
+  tm_polygons(col = 'IDPROV',
+              palette = "BuGn") + tm_text('DISTRITO',
+                                          size = 0.5, 
+                                          fontface = 2,
+                                          fontfamily = 'Tw Cen MT Condensed') +
+  tm_scale_bar(breaks = c(0,100,200), text.size = 0.5) +
+  tm_compass(type = "8star", position = c("left", "bottom")) +
+  tm_style("classic") +
+  tm_grid(col = 'gray', alpha = 0.5) +
+  tm_logo(c("https://www.r-project.org/logo/Rlogo.png",
+            system.file("img/tmap.png", package = "tmap")), height = 3,
+          position = c(0.7, 0.8))
