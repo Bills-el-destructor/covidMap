@@ -1,6 +1,7 @@
 library(dplyr)
 library(ggplot2)
-covid <- read.csv("covid.csv", header = TRUE, sep = ",")
+source("Themes ggplot2 dark background.R")
+covid = read.csv("covid.csv", header = TRUE, sep = ",")
 
 confirmados = filter(covid, clasificacion == 'CONFIRMADO')
 fallecidos = filter(covid, evolucion == 'FALLECIO')
@@ -20,12 +21,14 @@ for (i in 1:nrow(frame_fallecidos)) {
   casos[frame_fallecidos[i,1],3] = frame_fallecidos[i,2]
 }
 
-  ggplot(casos, aes(x=dia)) + 
+montos =  ggplot(casos, aes(x=dia)) + 
     geom_point(aes(y = infectados), color = "#F74498") + 
     geom_line(aes(y = decesos), color="grey") + #recuperados color = #70dbdb
     scale_x_continuous(n.breaks = 28) +
     scale_y_continuous(n.breaks = 20) +
     theme_unique_dark()
+
+montos
 
 ggsave(filename = "imagenes/infectados_decesos.jpg", width = 1920, height = 1080, units = "px", device='jpg', dpi=100)
 

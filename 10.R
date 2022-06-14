@@ -5,15 +5,12 @@ library(spData)
 library(tmap)
 library(leaflet)
 library(ggplot2)
-library(tmap)
-library(sf)
-library(extrafont)
 
 myshp = st_read("PUNO/DISTRITOS_PUNO.shp")
 
 tm_shape(myshp) + tm_polygons()
 
-  C = tm_shape(myshp) +
+MD =  tm_shape(myshp) +
       tmap_options(inner.margins = c(0.1, 0.1, 0.02, 0.01)) +
       tm_fill('PROVINCIA', #tm_fill = rellena de colores el mapa y la paleta
               title = '',
