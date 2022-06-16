@@ -1,7 +1,7 @@
 library(dplyr)
 library(ggplot2)
 source("Themes ggplot2 dark background.R")
-covid = read.csv("covid.csv", header = TRUE, sep = ",")
+covid = read.csv("covid.csv", header = TRUE, sep = ",", encoding = "UTF-8")
 
 confirmados = filter(covid, clasificacion == 'CONFIRMADO')
 fallecidos = filter(covid, evolucion == 'FALLECIO')
